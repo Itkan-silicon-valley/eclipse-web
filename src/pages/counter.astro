@@ -1,0 +1,86 @@
+---
+import "../styles/global.css";
+
+const pageTitle = "Eclipse 30618 Counter";
+const pageDescription = "A live elapsed-time counter for Eclipse 30618.";
+const startTime = "2026-04-29T21:45:00-07:00";
+const startLabel = "April 29, 2026 at 9:45 PM PDT";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={pageDescription} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://eclipse30618.com/counter/" />
+    <meta property="og:image" content="https://eclipse30618.com/eclipse-hero.png" />
+    <meta name="theme-color" content="#050609" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <main class="counter-page">
+      <img class="counter-page__image" src="/eclipse-hero.png" alt="" />
+      <div class="counter-page__shade" aria-hidden="true"></div>
+
+      <section class="counter-panel" aria-labelledby="counter-title" data-start-time={startTime}>
+        <p class="counter-kicker">Eclipse 30618</p>
+        <h1 id="counter-title">Time Since Start</h1>
+        <p class="counter-start">Started {startLabel}</p>
+
+        <div class="counter-grid" aria-label="Elapsed time">
+          <div class="counter-card">
+            <strong data-counter-unit="days">0</strong>
+            <span>Days</span>
+          </div>
+          <div class="counter-card">
+            <strong data-counter-unit="hours">00</strong>
+            <span>Hours</span>
+          </div>
+          <div class="counter-card">
+            <strong data-counter-unit="minutes">00</strong>
+            <span>Minutes</span>
+          </div>
+          <div class="counter-card">
+            <strong data-counter-unit="seconds">00</strong>
+            <span>Seconds</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const panel = document.querySelector("[data-start-time]");
+      const startTime = panel ? new Date(panel.dataset.startTime) : new Date();
+      const units = {
+        days: document.querySelector('[data-counter-unit="days"]'),
+        hours: document.querySelector('[data-counter-unit="hours"]'),
+        minutes: document.querySelector('[data-counter-unit="minutes"]'),
+        seconds: document.querySelector('[data-counter-unit="seconds"]')
+      };
+
+      const pad = (value) => String(value).padStart(2, "0");
+
+      function updateCounter() {
+        const elapsedMs = Math.max(0, Date.now() - startTime.getTime());
+        const totalSeconds = Math.floor(elapsedMs / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        units.days.textContent = String(days);
+        units.hours.textContent = pad(hours);
+        units.minutes.textContent = pad(minutes);
+        units.seconds.textContent = pad(seconds);
+      }
+
+      updateCounter();
+      window.setInterval(updateCounter, 1000);
+    </script>
+  </body>
+</html>
