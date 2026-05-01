@@ -1,0 +1,51 @@
+---
+import "../styles/global.css";
+
+const pageTitle = "Eclipse 30618";
+const pageDescription =
+  "Eclipse 30618 is preparing a new public website for team updates, season information, and community outreach.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={pageDescription} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://eclipse30618.com/" />
+    <meta property="og:image" content="https://eclipse30618.com/eclipse-hero.png" />
+    <meta name="theme-color" content="#050609" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <main class="site-shell">
+      <section class="hero" aria-labelledby="site-title">
+        <img
+          class="hero__image"
+          src="/eclipse-hero.png"
+          alt=""
+          loading="eager"
+          decoding="async"
+        />
+        <div class="hero__shade" aria-hidden="true"></div>
+
+        <div class="hero__content">
+          <p class="kicker">FTC Team 30618</p>
+          <h1 id="site-title">Eclipse 30618</h1>
+          <p class="lede">
+            Our public website is coming soon with team updates, season notes,
+            outreach work, and sponsor information.
+          </p>
+          <div class="status-row" aria-label="Website status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Website in progress</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

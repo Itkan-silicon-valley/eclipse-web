@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Eclipse 30618">
+  <rect width="64" height="64" rx="12" fill="#050609"/>
+  <circle cx="34" cy="30" r="20" fill="#f6b84f"/>
+  <circle cx="28" cy="30" r="20" fill="#050609"/>
+  <path d="M46 28a18 18 0 0 1-18 18" fill="none" stroke="#37c4cf" stroke-width="4" stroke-linecap="round"/>
+</svg>
