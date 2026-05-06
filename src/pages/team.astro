@@ -1,0 +1,56 @@
+---
+import "../styles/global.css";
+
+const pageTitle = "Eclipse 30618 Team";
+const pageDescription = "A simple roster page for Eclipse 30618 team members.";
+const teammates = [
+  { name: "Ali", role: "Captain" },
+  { name: "Adam", role: "Vice Captain" },
+  { name: "Zakariya", role: "Programming / CAD" },
+  { name: "Muhammad", role: "CAD" },
+  { name: "Nizar", role: "Programming" },
+  { name: "Haadi", role: "Programming" },
+  { name: "Yahia", role: "Programming" },
+  { name: "RYWD", role: "Business" }
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={pageDescription} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://eclipse30618.com/team/" />
+    <meta property="og:image" content="https://eclipse30618.com/eclipse-hero.png" />
+    <meta name="theme-color" content="#050609" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <main class="team-page">
+      <img class="team-page__image" src="/eclipse-hero.png" alt="" />
+      <div class="team-page__shade" aria-hidden="true"></div>
+
+      <section class="team-panel" aria-labelledby="team-title">
+        <div class="team-panel__top">
+          <a class="team-back" href="/">BACK</a>
+          <p class="team-kicker">Eclipse 30618</p>
+        </div>
+        <h1 id="team-title">Team Roster</h1>
+
+        <ul class="team-grid" aria-label="Team members">
+          {teammates.map((member) => (
+            <li class="team-card">
+              <span class="team-card__name">{member.name}</span>
+              <span class="team-card__role">{member.role}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
