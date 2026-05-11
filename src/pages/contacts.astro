@@ -4,8 +4,18 @@ import "../styles/global.css";
 const pageTitle = "Eclipse 30618 Contact";
 const pageDescription = "Get in touch with FTC Team Eclipse 30618.";
 const contactMethods = [
-  { label: "Email", value: "team@eclipse30618.com", link: "mailto:team@eclipse30618.com" },
-  { label: "Instagram", value: "@eclipse30618", link: "https://instagram.com/eclipse.30618" },
+  {
+    label: "Email",
+    value: "team@eclipse30618.com",
+    link: "mailto:team@eclipse30618.com",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`,
+  },
+  {
+    label: "Instagram",
+    value: "@eclipse30618",
+    link: "https://instagram.com/eclipse.30618",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
+  },
 ];
 ---
 
@@ -37,14 +47,25 @@ const contactMethods = [
         <h1 id="contact-title">Contact Us</h1>
 
         <ul class="team-grid" aria-label="Contact methods">
-          {contactMethods.map((method) => (
-            <li class="team-card">
-              <a href={method.link} style="text-decoration: none; color: inherit; display: grid; gap: 8px;">
-                <span class="team-card__name">{method.label}</span>
-                <span class="team-card__role">{method.value}</span>
-              </a>
-            </li>
-          ))}
+          {
+            contactMethods.map((method) => (
+              <li class="team-card">
+                <a
+                  href={method.link}
+                  style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;"
+                >
+                  <div
+                    style="margin-bottom: auto; color: var(--teal); opacity: 0.8;"
+                    set:html={method.icon}
+                  />
+                  <div style="display: grid; gap: 4px; margin-top: 16px;">
+                    <span class="team-card__name">{method.label}</span>
+                    <span class="team-card__role">{method.value}</span>
+                  </div>
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </section>
     </main>
