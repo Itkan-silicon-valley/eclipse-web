@@ -237,7 +237,8 @@ h1 {
   display: grid;
   min-height: 100vh;
   padding: clamp(24px, 6vw, 80px);
-  place-items: center;
+  align-content: center;
+  justify-items: start;
   overflow: hidden;
   isolation: isolate;
 }
@@ -337,6 +338,7 @@ h1 {
   .counter-page {
     min-height: 100svh;
     padding: 28px 18px;
+    align-content: start;
   }
 
   .counter-panel h1 {
@@ -371,7 +373,8 @@ h1 {
   display: grid;
   min-height: 100vh;
   padding: clamp(24px, 6vw, 80px);
-  place-items: center;
+  align-content: center;
+  justify-items: start;
   overflow: hidden;
   isolation: isolate;
 }
@@ -456,6 +459,11 @@ h1 {
   list-style: none;
 }
 
+.contact-grid {
+  grid-template-columns: 1fr !important;
+  max-width: 480px;
+}
+
 .team-card {
   display: grid;
   min-height: clamp(120px, 16vw, 176px);
@@ -490,6 +498,7 @@ h1 {
   .team-page {
     min-height: 100svh;
     padding: 28px 18px;
+    align-content: start;
   }
 
   .team-panel__top {
