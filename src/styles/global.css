@@ -1043,6 +1043,13 @@ h1 {
 
 /* Removed CSS-generated teeth and center; using SVG asset instead */
 
+.hero-title__crescent {
+  display: inline-block;
+  transform: scaleX(-1);
+  vertical-align: middle;
+}
+
+
 
 @keyframes spin {
   from { transform: rotate(0deg); }
