@@ -44,19 +44,19 @@ Always run `npm run build` before committing website changes.
 ## Repository Layout
 
 - `src/pages/index.astro`  
-  Homepage placeholder page.
+  Homepage and main single-page layout containing sections for Home, Team, and Contact.
 
 - `src/pages/counter.astro`  
   Unlinked elapsed-time counter page at `/counter/`. This page will be removed later on.
 
 - `src/styles/global.css`  
-  Shared styling for the homepage and counter page.
+  Shared styling for the site, including smooth scrolling and sticky navigation logic.
 
 - `public/`  
   Static assets copied directly into the built site.
 
 - `public/eclipse-hero.png`  
-  Main background image used by both pages.
+  Main background image used by all sections and pages.
 
 - `public/favicon.svg`  
   Site favicon.
@@ -72,11 +72,11 @@ Always run `npm run build` before committing website changes.
 
 ## Pages
 
-Homepage:
+Main Site:
 
 - Source: `src/pages/index.astro`
 - Route: `/`
-- Purpose: simple public placeholder for Eclipse 30618.
+- Purpose: Public single-page site for Eclipse 30618 with smooth scrolling navigation.
 
 Counter page:
 
@@ -92,8 +92,10 @@ Counter page:
 - Keep the visual style consistent with the existing dark eclipse/robotics theme.
 - Shared CSS lives in `src/styles/global.css`.
 - Use responsive layout rules for mobile and desktop.
+- Navigation uses a sticky top bar with anchor links to sections.
 - Do not add large new frameworks or UI libraries for simple pages.
 - Avoid changing homepage behavior when adding unlinked utility pages.
+
 
 ## Deployment
 

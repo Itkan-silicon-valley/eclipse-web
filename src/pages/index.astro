@@ -4,6 +4,32 @@ import "../styles/global.css";
 const pageTitle = "Eclipse 30618";
 const pageDescription =
   "Eclipse 30618 is preparing a new public website for team updates, season information, and community outreach.";
+
+const teammates = [
+  { name: "Ali", role: "Captain" },
+  { name: "Adam", role: "Vice Captain" },
+  { name: "Zakariya", role: "Programming / CAD" },
+  { name: "Muhammad", role: "CAD" },
+  { name: "Nizar", role: "Programming" },
+  { name: "Haadi", role: "Programming" },
+  { name: "Yahia", role: "Programming" },
+  { name: "RYWD", role: "Business" },
+];
+
+const contactMethods = [
+  {
+    label: "Email",
+    value: "team@eclipse30618.com",
+    link: "mailto:team@eclipse30618.com",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`,
+  },
+  {
+    label: "Instagram",
+    value: "@eclipse30618",
+    link: "https://instagram.com/eclipse.30618",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
+  },
+];
 ---
 
 <!doctype html>
@@ -22,8 +48,19 @@ const pageDescription =
     <title>{pageTitle}</title>
   </head>
   <body>
+    <div class="top-bar-container">
+      <header class="top-bar" aria-label="Primary">
+        <p class="top-bar__brand">Eclipse 30618</p>
+        <div style="display: flex; gap: 12px;">
+          <a class="top-bar__link" href="#home">HOME</a>
+          <a class="top-bar__link" href="#team">OUR TEAM</a>
+          <a class="top-bar__link" href="#contact">CONTACT US</a>
+        </div>
+      </header>
+    </div>
+
     <main class="site-shell">
-      <section class="hero" aria-labelledby="site-title">
+      <section id="home" class="hero" aria-labelledby="site-title">
         <img
           class="hero__image"
           src="/eclipse-hero.png"
@@ -32,14 +69,6 @@ const pageDescription =
           decoding="async"
         />
         <div class="hero__shade" aria-hidden="true"></div>
-
-        <header class="top-bar" aria-label="Primary">
-          <p class="top-bar__brand">Eclipse 30618</p>
-          <div style="display: flex; gap: 12px;">
-            <a class="top-bar__link" href="/team/">OUR TEAM</a>
-            <a class="top-bar__link" href="/contacts/">CONTACT US</a>
-          </div>
-        </header>
 
         <div class="hero__content">
           <p class="kicker">FTC Team 30618</p>
@@ -54,6 +83,103 @@ const pageDescription =
           </div>
         </div>
       </section>
+
+      <section id="team" class="team-page">
+        <img class="team-page__image" src="/eclipse-hero.png" alt="" />
+        <div class="team-page__shade" aria-hidden="true"></div>
+
+        <div class="team-panel">
+          <p class="team-kicker">Eclipse 30618</p>
+          <h1 id="team-title">Team Roster</h1>
+
+          <ul class="team-grid" aria-label="Team members">
+            {
+              teammates.map((member) => (
+                <li class="team-card">
+                  <span class="team-card__name">{member.name}</span>
+                  <span class="team-card__role">{member.role}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+
+      <section id="contact" class="team-page">
+        <img class="team-page__image" src="/eclipse-hero.png" alt="" />
+        <div class="team-page__shade" aria-hidden="true"></div>
+
+        <div class="team-panel">
+          <p class="team-kicker">Eclipse 30618</p>
+          <h1 id="contact-title">Contact Us</h1>
+
+          <ul class="team-grid contact-grid" aria-label="Contact methods">
+            {
+              contactMethods.map((method) => (
+                <li class="team-card">
+                  <a
+                    href={method.link}
+                    style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;"
+                  >
+                    <div
+                      style="margin-bottom: auto; color: var(--teal); opacity: 0.8;"
+                      set:html={method.icon}
+                    />
+                    <div style="display: grid; gap: 4px; margin-top: 16px;">
+                      <span class="team-card__name">{method.label}</span>
+                      <span class="team-card__role">{method.value}</span>
+                    </div>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
     </main>
+
+    <script>
+      const observerOptions = {
+        root: null,
+        rootMargin: "-20% 0px -20% 0px",
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            const id = entry.target.getAttribute("id");
+            updateActiveLink(id);
+          }
+        });
+      }, observerOptions);
+
+      const sections = document.querySelectorAll("section[id]");
+      sections.forEach((section) => observer.observe(section));
+
+      function updateActiveLink(id: string | null) {
+        if (!id) return;
+        const links = document.querySelectorAll(".top-bar__link");
+        links.forEach((link) => {
+          const href = link.getAttribute("href");
+          if (href === `#${id}`) {
+            link.classList.add("is-active");
+          } else {
+            link.classList.remove("is-active");
+          }
+        });
+      }
+
+      // Initial check for visibility on load
+      document.addEventListener("DOMContentLoaded", () => {
+        sections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom >= 0) {
+            section.classList.add("is-visible");
+          }
+        });
+      });
+    </script>
   </body>
 </html>
